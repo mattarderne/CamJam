@@ -48,8 +48,8 @@ func fetchLatestVideos() []Video {
 	err := s3svc.ListObjectsV2Pages(params, func(page *s3.ListObjectsV2Output, lastPage bool) bool {
 		for _, key := range page.Contents {
 			if strings.HasSuffix(*key.Key, ".mp4") {
-				baseUrl := "https://s3-eu-west-1.amazonaws.com/jamcams.tfl.gov.uk/%s"
-				url := fmt.Sprintf(baseUrl, *key.Key)
+				baseUrl := "https://s3-eu-west-1.amazonaws.com/jamcams.tfl.gov.uk/00001.07450.mp4"
+				url := fmt.Sprintf(baseUrl)
 				if (*key.Size > 20000) {
 					videos = append(videos, Video{url, *key.LastModified})
 				}
